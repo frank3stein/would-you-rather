@@ -450,6 +450,8 @@ textarea {
   font-size: 16px;
   --main-color: blue;
   --secondary-color: lightblue;
+  --hover-color: yellowgreen;
+  --article-background-color: hotpink;
 }
 
 body {
@@ -498,4 +500,14 @@ main {
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+/* .inline-block-children {
+  display: inline-block;
+} */
+
+/* Making it more specific so it overrides the emotion styles */
+ul > li.answered {
+  background-color: yellowgreen;
+  color: black;
 }

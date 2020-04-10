@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../store/actions.js";
+import { useHistory } from "react-router-dom";
 
 export const Login = () => {
-  const { users, loggedIn } = useSelector((state) => state);
+  const history = useHistory();
+  const { users, user } = useSelector((state) => state);
+  const [loggedIn, setLoggedIn] = useState(user.loggedIn);
+  // we get the values which are not boolean, as we have fething property with a boolean value
   const userObjectsArray = Object.values(users).filter(
     (value) => typeof value !== "boolean"
   );
+
   const dispatch = useDispatch();
+  console.log(loggedIn);
+  useEffect(() => {
+    setLoggedIn(user.loggedIn);
+  }, [loggedIn]);
   // console.log(userObjectsArray);
   return (
     <section className="flex-column">
@@ -18,7 +27,9 @@ export const Login = () => {
             dispatch(logout());
             return;
           }
+          // console.log(e.target.value);
           dispatch(login(e.target.value));
+          history.push("/home");
         }}
       >
         <option></option>
@@ -28,7 +39,6 @@ export const Login = () => {
           </option>
         ))}
       </select>
-      {loggedIn && <p>{loggedIn}</p>}
     </section>
   );
 };

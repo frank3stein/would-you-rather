@@ -1,23 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
-import { Login } from "../components/login";
-import { Home } from "../components/home";
-import { Add } from "../components/add";
+import { Home } from "./home/home";
+import { Add } from "./add";
+import { LoginCheck } from "./login-check";
+import { useSelector } from "react-redux";
+import { Leaderboard } from "./leaderboard";
+import { QuestionAnswered } from "./question-answered";
+import { QuestionId } from "./question/:id";
 
-export const Main = (props) => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  function loginScreen() {}
-  if (!loggedIn) {
-    return (
+export const Main = () => {
+  const { questions, users, user } = useSelector((state) => state);
+  const loggedIn = user.loggedIn;
+  return (
+    <Switch>
       <main>
-        <Switch>
-          <Route path="/home">
+        <LoginCheck>
+          {/* <Route path="/login" component={LoginCheck} /> */}
+          <Route
+            path="/new-question"
+            exact
+            render={(props) => <Add {...props} user={loggedIn} />}
+          ></Route>
+
+          <Route
+            path="/leader-board"
+            exact
+            render={(props) => {
+              return (
+                <>
+                  <Leaderboard users={users} {...props} />
+                </>
+              );
+            }}
+          ></Route>
+          <Route path="/questions/:id" exact component={QuestionId}></Route>
+          <Route path="/home" exact>
             <Home />
           </Route>
-          <Route path="/login" component={Login} />
-          <Route path="/new-question" component={Add} />
-        </Switch>
+          {/* <Route path="">
+          <LoginCheck />
+        </Route> */}
+        </LoginCheck>
       </main>
-    );
-  }
+    </Switch>
+  );
 };
