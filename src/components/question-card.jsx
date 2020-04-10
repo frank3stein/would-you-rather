@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { updateAnswer } from "../store/actions";
 import { useHistory } from "react-router-dom";
+
 export const QuestionCard = ({ user, question, users, setAnswered }) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  // const [answered, setAnswered] = useState(null);
-  console.log(user, question);
   return (
     <>
       <section className="">
@@ -22,20 +21,21 @@ export const QuestionCard = ({ user, question, users, setAnswered }) => {
               e.currentTarget.children,
               (element) => element.checked === true
             );
-            // console.log(selectedInputHTML[0].value);
-            // selectedInputHTML[0].value;
-            // setAnswered(selectedInputHTML[0].value);
+            if (selectedInputHTML.length === 0) {
+              return;
+            }
+            console.log(selectedInputHTML[0].value);
             const result = dispatch(
               updateAnswer({
                 id: question.id,
-                authedUser: user.id,
+                authedUser: users[user],
                 answer: selectedInputHTML[0].value,
               })
             );
 
             result.then(() => {
-              history.replace("/questions/" + question.id);
               setAnswered();
+              history.push("/questions/" + question.id);
             });
           }}
           className="flex-column"

@@ -14,6 +14,7 @@ import {
   DONE_FETCHING_USERS,
   // UPDATE_QUESTION_ANSWER,
   ADD_ANSWER_TO_USER,
+  ADD_VOTE,
 } from "./actions";
 
 const users = (state = {}, action) => {
@@ -38,10 +39,10 @@ const users = (state = {}, action) => {
     case ADD_ANSWER_TO_USER:
       return {
         ...state,
-        [action.author]: {
-          ...state[action.author],
+        [action.authedUser.id]: {
+          ...state[action.authedUser.id],
           answers: {
-            ...state[action.author]["answers"],
+            ...state[action.authedUser.id].answers,
             [action.id]: action.answer,
           },
         },
@@ -64,6 +65,20 @@ const questions = (state = {}, action) => {
       return {
         ...state,
         [action.question.id]: action.question,
+      };
+
+    case ADD_VOTE:
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          [action.answer]: {
+            ...state[action.id][action.answer],
+            votes: state[action.id][action.answer].votes.concat([
+              action.authedUser.id,
+            ]),
+          },
+        },
       };
     default:
       return state;

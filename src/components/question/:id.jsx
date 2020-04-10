@@ -4,7 +4,7 @@ import { QuestionCard } from "../question-card";
 import { useSelector } from "react-redux";
 import { ResultCard } from "../results-card";
 
-export const QuestionId = ({}) => {
+export const QuestionId = ({ setAnswerUpdate }) => {
   const { params } = useRouteMatch("/questions/:id");
   const { questions, users, user } = useSelector((state) => state);
   console.log(params.id);
@@ -12,18 +12,18 @@ export const QuestionId = ({}) => {
   const author = question.author;
   //   question.optionOne.includes(user.loggedIn) ||
   //     question.OptionTwo.includes(user.LoggedIn);
-  //   const isOptionOneAuthedUserAnswer = !!question.optionOne.votes.filter(
-  //     (key) => key === user.loggedIn
-  //   ).length;
-  const isOptionOneAuthedUserAnswer = question.optionOne.votes.includes(
-    user.loggedIn
-  );
-  //   const isOptionTwoAuthedUserAnswer = !!question.optionTwo.votes.filter(
-  //     (key) => key === user.loggedIn
-  //   ).length;
-  const isOptionTwoAuthedUserAnswer = question.optionTwo.votes.includes(
-    user.loggedIn
-  );
+  const isOptionOneAuthedUserAnswer = question.optionOne.votes.filter(
+    (key) => key === user.loggedIn
+  ).length;
+  //   const isOptionOneAuthedUserAnswer = question.optionOne.votes.includes(
+  //     user.loggedIn
+  //   );
+  const isOptionTwoAuthedUserAnswer = question.optionTwo.votes.filter(
+    (key) => key === user.loggedIn
+  ).length;
+  //   const isOptionTwoAuthedUserAnswer = question.optionTwo.votes.includes(
+  //     user.loggedIn
+  //   );
 
   const [answered, setAnswered] = useState(
     isOptionOneAuthedUserAnswer
@@ -62,9 +62,10 @@ export const QuestionId = ({}) => {
   ) : (
     <QuestionCard
       question={question}
-      user={users[author]}
+      user={user.loggedIn}
       users={users}
       setAnswered={() => setAnswered(true)}
+      setAnswerUpdate={setAnswerUpdate}
     />
   );
   //   return (

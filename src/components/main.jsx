@@ -11,6 +11,7 @@ import { QuestionId } from "./question/:id";
 export const Main = () => {
   const { questions, users, user } = useSelector((state) => state);
   const loggedIn = user.loggedIn;
+  // const [answerUpdate, setAnswerUpdate] = useState(false);
   return (
     <Switch>
       <main>
@@ -33,7 +34,16 @@ export const Main = () => {
               );
             }}
           ></Route>
-          <Route path="/questions/:id" exact component={QuestionId}></Route>
+          <Route
+            path="/questions/:id"
+            exact
+            render={(props) => (
+              <QuestionId
+                {...props}
+                // setAnswerUpdate={() => setAnswerUpdate(!answerUpdate)}
+              />
+            )}
+          ></Route>
           <Route path="/home" exact>
             <Home />
           </Route>

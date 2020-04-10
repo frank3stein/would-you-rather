@@ -21,6 +21,7 @@ export const IS_FECTHING_USERS = "IS_FETCHING_USERS";
 export const DONE_FETCHING_QUESTIONS = "DONE_FETCHING_QUESTIONS";
 export const DONE_FETCHING_USERS = "DONE_FETCHING_USERS";
 export const ADD_ANSWER_TO_USER = "ADD_ANSWER_TO_USER";
+export const ADD_VOTE = "ADD_VOTE";
 
 export function getUsers(users) {
   return {
@@ -93,15 +94,24 @@ export function addQuestion(question) {
   };
 }
 
-export function addAnswerToUser(answer) {
+export function addVote({ id, answer, authedUser }) {
+  return {
+    type: ADD_VOTE,
+    id,
+    answer,
+    authedUser,
+  };
+}
+
+export function addAnswerToUser({ authedUser, id, answer }) {
   // needs the author, answer id and answer properties
   // authedUser, id, answer
-  console.log("Answer: ", answer);
+  console.log("Answer: ", answer, authedUser, id);
   return {
     type: ADD_ANSWER_TO_USER,
-    author: answer.authedUser,
-    id: answer.id,
-    answer: answer.answer,
+    authedUser,
+    id,
+    answer,
   };
 }
 
@@ -148,6 +158,7 @@ export const updateAnswer = (answer) => (dispatch) => {
   return _saveQuestionAnswer(answer)
     .then((answer) => {
       dispatch(addAnswerToUser(answer));
+      dispatch(addVote(answer));
     })
     .then(() => {
       // fetching state can be toggled off
