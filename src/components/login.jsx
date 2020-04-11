@@ -13,11 +13,9 @@ export const Login = () => {
   );
 
   const dispatch = useDispatch();
-  console.log(loggedIn);
   useEffect(() => {
     setLoggedIn(user.loggedIn);
   }, [loggedIn]);
-  // console.log(userObjectsArray);
   return (
     <section className="flex-column">
       <h2>Please select a user to login</h2>
@@ -27,7 +25,6 @@ export const Login = () => {
             dispatch(logout());
             return;
           }
-          // console.log(e.target.value);
           dispatch(login(e.target.value));
           history.push("/home");
         }}

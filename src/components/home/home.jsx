@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { LoginCheck } from "../login-check";
 import { IsAnswered } from "./is-answered";
-import { css, cx } from "emotion";
+import { css } from "emotion";
 
 const filterObjectPropertiesByKeys = function (object, arrayOfKeys) {
   let includes = [];
@@ -26,10 +25,8 @@ export const Home = ({}) => {
     questions,
     Object.keys(users[loggedIn].answers)
   );
-  console.log(answered, unAnswered);
   return (
     <>
-      {/* <LoginCheck> */}
       <section className="flex-column">
         <ul
           className={css`
@@ -76,7 +73,6 @@ export const Home = ({}) => {
           />
         </section>
       </section>
-      {/* </LoginCheck> */}
     </>
   );
 };

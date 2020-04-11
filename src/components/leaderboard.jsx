@@ -32,8 +32,7 @@ export const Leaderboard = ({ users }) => {
       total: array[3],
     };
   });
-  console.log(newUsers);
-  console.log(usersArray);
+
   return (
     <section>
       {Object.keys(newUsers).map((key, index) => (

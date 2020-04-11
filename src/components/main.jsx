@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { Home } from "./home/home";
-import { NewQuestion } from "./new-question";
+import { Add } from "./add";
 import { LoginCheck } from "./login-check";
 import { useSelector } from "react-redux";
 import { Leaderboard } from "./leaderboard";
@@ -15,9 +15,9 @@ export const Main = () => {
       <main>
         <LoginCheck>
           <Route
-            path="/new-question"
+            path="/add"
             exact
-            render={(props) => <NewQuestion {...props} user={loggedIn} />}
+            render={(props) => <Add {...props} user={loggedIn} />}
           ></Route>
 
           <Route

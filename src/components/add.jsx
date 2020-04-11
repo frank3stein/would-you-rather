@@ -4,10 +4,9 @@ import { savingQuestion } from "../store/actions";
 import { useHistory } from "react-router-dom";
 import { css } from "emotion";
 
-export const NewQuestion = ({ user }) => {
+export const Add = ({ user }) => {
   const [clicked, setClicked] = useState(false);
   const history = useHistory();
-  console.log(user);
   const dispatch = useDispatch();
   const submit = (e) => {
     setClicked(true);

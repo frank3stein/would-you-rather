@@ -44,7 +44,6 @@ export const QuestionCard = ({ user, question, users, setAnswered }) => {
           <label htmlFor="optionone">{question.optionOne.text}</label>
           <input type="radio" name="options" id="optiontwo" value="optionTwo" />
           <label htmlFor="optiontwo">{question.optionTwo.text}</label>
-          {/* Go to answered */}
           <button type="submit">Answer</button>
         </form>
       </section>

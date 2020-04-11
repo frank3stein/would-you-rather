@@ -1,7 +1,16 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import { css } from "emotion";
+import styled from "@emotion/styled";
+
+const InNumbers = styled.span`
+  font-size: 1.5rem;
+`;
+
+const YourAnswer = styled.p`
+  margin-top: 1rem;
+  background-color: var(--hover-color);
+`;
 
 export const QuestionContent = ({
   question,
@@ -9,9 +18,7 @@ export const QuestionContent = ({
   user,
   authedUserAnswer = null,
 }) => {
-  const dispatch = useDispatch();
   const history = useHistory();
-  const users = useSelector((state) => state);
   switch (context) {
     //todo: move the string values to variables
     case "MAIN_PAGE":
@@ -39,6 +46,10 @@ export const QuestionContent = ({
         </>
       );
     case "RESULTS":
+      const numberOfAnswers =
+        question.optionOne.votes.length + question.optionTwo.votes.length;
+      const numberOfOptionOneAnswers = question.optionOne.votes.length;
+      const numberOfOptionTwoAnswers = question.optionTwo.votes.length;
       return (
         <div className={css``}>
           <h2
@@ -58,11 +69,16 @@ export const QuestionContent = ({
               ${authedUserAnswer === "optionOne"
                 ? `background-color:var(--hover-color)`
                 : null}
+              margin-top: .5rem;
             `}
           >
-            {authedUserAnswer === "optionOne" ? <p>Your Answer</p> : null}
+            {authedUserAnswer === "optionOne" ? (
+              <YourAnswer>Your Answer</YourAnswer>
+            ) : null}
             <p>{question.optionOne.text}</p>
-            <span></span>
+            <InNumbers>
+              {numberOfOptionOneAnswers + ` / ` + numberOfAnswers}
+            </InNumbers>
             <p></p>
           </section>
           <section
@@ -70,11 +86,16 @@ export const QuestionContent = ({
               ${authedUserAnswer === "optionTwo"
                 ? `background-color:var(--hover-color)`
                 : null}
+              margin-top: .5rem;
             `}
           >
-            {authedUserAnswer === "optionTwo" ? <p>Your Answer</p> : null}
+            {authedUserAnswer === "optionTwo" ? (
+              <YourAnswer>Your Answer</YourAnswer>
+            ) : null}
             <p>{question.optionTwo.text}</p>
-            <span></span>
+            <InNumbers>
+              {numberOfOptionTwoAnswers + ` / ` + numberOfAnswers}
+            </InNumbers>
           </section>
         </div>
       );
