@@ -447,17 +447,26 @@ textarea {
 
 /* CSS starts here */
 :root {
-  font-size: 16px;
-  --main-color: blue;
+  font-size: 24px;
+  --main-color: #1c1c1c;
   --secondary-color: lightblue;
   --hover-color: yellowgreen;
   --article-background-color: hotpink;
+}
+
+a {
+  color: var(--secondary-color);
+}
+
+a:active {
+  color: var(--hover-color);
 }
 
 body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: lightslategray;
 }
 
 #root {

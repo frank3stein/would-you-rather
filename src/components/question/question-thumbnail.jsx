@@ -11,6 +11,7 @@ export const QuestionThumbnail = ({ user, ...props }) => {
         text-align: center;
         border: 2px, solid, black;
         margin-bottom: 1rem;
+        padding: 1rem;
         &:hover {
           background-color: var(--hover-color);
         }

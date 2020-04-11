@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { LoginCheck } from "./login-check";
 import { useDispatch } from "react-redux";
 import { savingQuestion } from "../store/actions";
 import { useHistory } from "react-router-dom";
+import { css } from "emotion";
 
-export const Add = ({ user }) => {
+export const NewQuestion = ({ user }) => {
   const [clicked, setClicked] = useState(false);
   const history = useHistory();
   console.log(user);
@@ -27,7 +27,12 @@ export const Add = ({ user }) => {
     });
   };
   return (
-    <section className="flex-column">
+    <section
+      className="flex-column"
+      className={css`
+        color: white;
+      `}
+    >
       <h1>Would you rather?</h1>
       <form className="flex-column inline-block-children" onSubmit={submit}>
         <label htmlFor="inputOne">Enter the first choice:</label>

@@ -1,8 +1,7 @@
 import React from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { QuestionComposite } from "./question-composite";
-// import { updateAnswer } from "../../store/actions";
+import { css } from "emotion";
 
 export const QuestionContent = ({
   question,
@@ -41,20 +40,43 @@ export const QuestionContent = ({
       );
     case "RESULTS":
       return (
-        <>
-          <h2>Results</h2>
-          <section>
-            <p>Would you rather {question.optionOne.text}?</p>
+        <div className={css``}>
+          <h2
+            className={css`
+              text-align: left;
+              font-size: 1.4rem;
+              font-weight: bold;
+              padding-left: 0.2rem;
+              margin-bottom: 0.3rem;
+            `}
+          >
+            Results
+          </h2>
+          <p>Would you rather ... ?</p>
+          <section
+            className={css`
+              ${authedUserAnswer === "optionOne"
+                ? `background-color:var(--hover-color)`
+                : null}
+            `}
+          >
             {authedUserAnswer === "optionOne" ? <p>Your Answer</p> : null}
+            <p>{question.optionOne.text}</p>
             <span></span>
             <p></p>
           </section>
-          <section>
-            <p>Would you rahter {question.optionTwo.text}?</p>
+          <section
+            className={css`
+              ${authedUserAnswer === "optionTwo"
+                ? `background-color:var(--hover-color)`
+                : null}
+            `}
+          >
             {authedUserAnswer === "optionTwo" ? <p>Your Answer</p> : null}
+            <p>{question.optionTwo.text}</p>
             <span></span>
           </section>
-        </>
+        </div>
       );
     default:
       return null;
