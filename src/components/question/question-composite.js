@@ -10,11 +10,11 @@ export const QuestionComposite = ({
 }) => {
   return (
     <QuestionThumbnail
-      key={index}
+      key={`question-thumbnail-${index}`}
       question={question}
       user={users[question.author]}
     >
-      <QuestionContent question={question} key={index} context={context} />
+      <QuestionContent question={question} key={`question-content-${index}`} context={context} />
     </QuestionThumbnail>
   );
 };

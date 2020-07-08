@@ -28,7 +28,7 @@ export const Add = ({ user }) => {
   return (
     <section
       className="flex-column"
-      className={css`
+      css={css`
         color: white;
       `}
     >

@@ -146,7 +146,6 @@ export const fetchQuestions = () => (dispatch) => {
 export const savingQuestion = (question) => (dispatch) => {
   return _saveQuestion(question).then((question) => {
     dispatch(addQuestionToUser(question));
-    console.log(question);
     dispatch(addQuestion(question));
     return question;
   });

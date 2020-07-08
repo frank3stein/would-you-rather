@@ -7,7 +7,7 @@ export const Login = () => {
   const history = useHistory();
   const { users, user } = useSelector((state) => state);
   const [loggedIn, setLoggedIn] = useState(user.loggedIn);
-  // we get the values which are not boolean, as we have fething property with a boolean value
+  // we get the values which are not boolean, as we are fecthing property with a boolean value
   const userObjectsArray = Object.values(users).filter(
     (value) => typeof value !== "boolean"
   );

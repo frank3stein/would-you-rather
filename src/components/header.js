@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/actions.js";
 
-export const Header = (props) => {
+export const Header = () => {
   const { users, user } = useSelector((state) => state);
   const loggedIn = user.loggedIn;
   const dispatch = useDispatch();
@@ -48,12 +48,12 @@ export const Header = (props) => {
               </li>
             </>
           ) : (
-            <Link to="/login">
-              <li className="navigation-item" key="login">
-                Login
+              <Link to="/login">
+                <li className="navigation-item" key="login">
+                  Login
               </li>
-            </Link>
-          )}
+              </Link>
+            )}
         </ul>
       </nav>
     </header>

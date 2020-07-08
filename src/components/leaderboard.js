@@ -2,14 +2,6 @@ import React from "react";
 import { QuestionThumbnail } from "./question/question-thumbnail";
 import { QuestionContent } from "./question/question-content";
 
-function countingAnswersAndQuestions(user) {
-  // Count of user.answers{}
-  const answersCount = Object.keys(user.answers).length;
-  // Count of questions[]
-  const questionsCount = user.questions.length;
-  return [answersCount, questionsCount];
-}
-
 export const Leaderboard = ({ users }) => {
   console.log("Users ", users);
   let usersArray = [];
@@ -35,15 +27,16 @@ export const Leaderboard = ({ users }) => {
 
   return (
     <section>
-      {Object.keys(newUsers).map((key, index) => (
-        <QuestionThumbnail user={newUsers[key]}>
+      {Object.keys(newUsers).map((key) => {
+        console.log(newUsers, key)
+        return <QuestionThumbnail user={newUsers[key]} key={`question-thumbnail-${key}`}>
           <QuestionContent
             context="LEADERBOARD"
             user={newUsers[key]}
-            key={index}
+            key={`question-content-${key}`}
           />
         </QuestionThumbnail>
-      ))}
+      })}
     </section>
   );
 };

@@ -17,7 +17,7 @@ const filterObjectPropertiesByKeys = function (object, arrayOfKeys) {
   return [includes, excludes];
 };
 
-export const Home = ({}) => {
+export const Home = () => {
   const { questions, users, user } = useSelector((state) => state);
   const loggedIn = user.loggedIn;
   const [isAnswered, setIsAnswered] = useState(true);
