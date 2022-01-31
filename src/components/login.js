@@ -15,7 +15,7 @@ export const Login = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     setLoggedIn(user.loggedIn);
-  }, [loggedIn]);
+  }, [user.loggedIn]);
   return (
     <section className="flex-column">
       <h2>Please select a user to login</h2>
@@ -26,7 +26,7 @@ export const Login = () => {
             return;
           }
           dispatch(login(e.target.value));
-          history.push("/home");
+          // history.push("/home");
         }}
       >
         <option></option>

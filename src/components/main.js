@@ -5,15 +5,16 @@ import { Add } from "./add";
 import { LoginCheck } from "./login-check";
 import { useSelector } from "react-redux";
 import { Leaderboard } from "./leaderboard";
-import { QuestionId } from "./question/question-id";
+import { QuestionIdParent } from "./question/question-id-parent";
+import { NotFound } from "./notfound";
 
 export const Main = () => {
   const { users, user } = useSelector((state) => state);
   const loggedIn = user.loggedIn;
   return (
-    <Switch>
-      <main>
-        <LoginCheck>
+    <main>
+      <LoginCheck>
+        <Switch>
           <Route
             path="/add"
             exact
@@ -34,13 +35,21 @@ export const Main = () => {
           <Route
             path="/questions/:id"
             exact
-            render={(props) => <QuestionId {...props} />}
+            render={(props) => {
+              return <QuestionIdParent {...props} />;
+            }}
           ></Route>
+          <Route path="/" exact>
+            <Home />
+          </Route>
           <Route path="/home" exact>
             <Home />
           </Route>
-        </LoginCheck>
-      </main>
-    </Switch>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </LoginCheck>
+    </main>
   );
 };

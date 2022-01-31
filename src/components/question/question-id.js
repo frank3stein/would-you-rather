@@ -8,18 +8,18 @@ export const QuestionId = ({ setAnswerUpdate }) => {
   const { params } = useRouteMatch("/questions/:id");
   const { questions, users, user } = useSelector((state) => state);
   const question = questions[params.id];
-  const author = question.author;
+  const author = question?.author;
 
   // const isOptionOneAuthedUserAnswer = question.optionOne.votes.filter(
   //   (key) => key === user.loggedIn
   // ).length;
-  const isOptionOneAuthedUserAnswer = question.optionOne.votes.includes(
+  const isOptionOneAuthedUserAnswer = question?.optionOne.votes.includes(
     user.loggedIn
   );
   // const isOptionTwoAuthedUserAnswer = question.optionTwo.votes.filter(
   //   (key) => key === user.loggedIn
   // ).length;
-  const isOptionTwoAuthedUserAnswer = question.optionTwo.votes.includes(
+  const isOptionTwoAuthedUserAnswer = question?.optionTwo.votes.includes(
     user.loggedIn
   );
 

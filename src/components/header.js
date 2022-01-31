@@ -1,9 +1,16 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../store/actions.js";
 
 export const Header = () => {
+  const history = useHistory();
   const { users, user } = useSelector((state) => state);
   const loggedIn = user.loggedIn;
   const dispatch = useDispatch();
@@ -42,18 +49,21 @@ export const Header = () => {
               <li
                 className="navigation-item"
                 key="logout"
-                onClick={() => dispatch(logout())}
+                onClick={() => {
+                  history.push("/");
+                  dispatch(logout());
+                }}
               >
                 Logout
               </li>
             </>
           ) : (
-              <Link to="/login">
-                <li className="navigation-item" key="login">
-                  Login
+            <Link to="/login">
+              <li className="navigation-item" key="login">
+                Login
               </li>
-              </Link>
-            )}
+            </Link>
+          )}
         </ul>
       </nav>
     </header>
