@@ -8,6 +8,7 @@ export const Add = ({ user }) => {
   const [clicked, setClicked] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
+  console.log(user);
   const submit = (e) => {
     setClicked(true);
     e.preventDefault();
@@ -35,11 +36,23 @@ export const Add = ({ user }) => {
       <h1>Would you rather?</h1>
       <form className="flex-column inline-block-children" onSubmit={submit}>
         <label htmlFor="inputOne">Enter the first choice:</label>
-        <input type="text" inputone="inputone" id="inputone" required />
+        <input
+          type="text"
+          inputone="inputone"
+          id="inputone"
+          required
+          data-testid="rather-inputone"
+        />
         <h3>OR</h3>
         <label htmlFor="inputOne">Enter the second choice:</label>
-        <input type="text" inputtwo="inputtwo" id="inputtwo" required />
-        <button disabled={clicked} type="submit">
+        <input
+          type="text"
+          inputtwo="inputtwo"
+          id="inputtwo"
+          required
+          data-testid="rather-inputtwo"
+        />
+        <button disabled={clicked} type="submit" data-testid="rather-submit">
           Submit
         </button>
       </form>

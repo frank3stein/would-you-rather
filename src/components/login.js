@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { login, logout } from "../store/actions.js";
-import { useHistory } from "react-router-dom";
 
 export const Login = () => {
-  const history = useHistory();
   const { users, user } = useSelector((state) => state);
-  const [loggedIn, setLoggedIn] = useState(user.loggedIn);
+  const [, setLoggedIn] = useState(user.loggedIn);
   // we get the values which are not boolean, as we are fecthing property with a boolean value
   const userObjectsArray = Object.values(users).filter(
     (value) => typeof value !== "boolean"
